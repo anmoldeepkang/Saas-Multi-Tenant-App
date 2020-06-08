@@ -1,0 +1,77 @@
+.profile-container {
+    padding-top: 30px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-info .profile-avatar img {
+    border-radius: 50%;
+    max-width: 250px;
+
+}
+
+.profile-info .profile-name {
+    font-weight: 500;
+    font-size: 18px;
+    font-size: 18px;
+    margin: auto;
+}
+
+.profile-info .profile-email {
+    font-weight: 400;
+    text-align: center;
+    margin: auto auto 10;
+}
+
+.text-avatar {
+    width: 225px;
+    height: 225px;
+    margin: 0 auto;
+    vertical-align: middle;
+    text-align: center;
+
+    border-radius: 50%;
+
+}
+
+.card {
+  margin-bottom: 40px;
+  width:350px;
+  margin-left:20px;
+  margin-bottom: 20px
+}
+
+.messageCard {
+  margin-left:20px;
+  margin-bottom: 20px
+}
+.postCard {
+  margin-left:20px;
+  margin-bottom: 20px;
+
+
+}
+.text-avatar span {
+    line-height: 225px;
+    color: #fff;
+    margin: 0 auto;
+    font-size: 3em;
+}
+.newPostDiv {
+  margin: 40px auto 40px 20px
+}
+.messageText {
+  font-weight: 500;
+  padding: 10px
+
+}
+.postButton {
+  margin-top: 40px;
+  color:'primary';
+  variant:'contained';
+}
+.previewImg {
+  margin:'30px';width:'480px';height:'300px';
+}
