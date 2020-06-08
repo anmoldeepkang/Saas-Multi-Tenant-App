@@ -1,15 +1,15 @@
 package com.demo.tenant;
 
 
+import javax.sql.DataSource;
+
 import org.flywaydb.core.Flyway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.demo.repository.TenantRepository;
-
-import javax.sql.DataSource;
+import com.demo.repository.UserRepository;
 
 @Configuration
 public class FlywayConfig {
@@ -30,9 +30,9 @@ public class FlywayConfig {
     }
 
     @Bean
-    public Boolean tenantsFlyway(TenantRepository repository, DataSource dataSource){
+    public Boolean tenantsFlyway(UserRepository repository, DataSource dataSource){
         repository.findAll().forEach(tenant -> {
-            String schema = tenant.getTenantId();
+            String schema = tenant.getEmail();
             Flyway flyway = new Flyway();
             flyway.setLocations("db/migration/tenants");
             flyway.setDataSource(dataSource);

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name="messages")
+@Table(name="MESSAGES")
 public class Message {
 
     @Id
@@ -29,7 +29,20 @@ public class Message {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    public String getUuid() {
+    @Column(name="IMAGE")
+    private String image;
+    
+    @Column(name="IMAGE")
+    public String getImage() {
+		return image;
+	}
+
+    @Column(name="IMAGE")
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getUuid() {
         return uuid;
     }
 

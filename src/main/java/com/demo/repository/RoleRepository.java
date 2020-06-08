@@ -3,7 +3,7 @@ package com.demo.repository;
 import java.util.List;
 
 import com.demo.model.Role;
-import com.demo.model.Tenant;
+import com.demo.model.User;
 
 public interface RoleRepository {
 	

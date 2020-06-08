@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,17 +21,7 @@ public class TenantConnectionProvider implements
 	
 	ExpiringMap<String, DataSource> map=new ExpiringMap<>();
 	
-    public Connection getTenantDataSourceConnection(String tenantId) throws SQLException {
-    	if(map.containsKey(tenantId))
-    		return map.get(tenantId).getConnection();
-    	else {
-    		DataSource newDataSource=DataSourceBuilder.create().url("jdbc:mysql://localhost:3306/"+tenantId+"?useSSL=false")
-    		.username("root").password("").driverClassName("com.mysql.jdbc.Driver").build();
-    		map.put(tenantId, newDataSource);
-    		return newDataSource.getConnection();
-    	}
-         
-    }
+    
 	
 	public TenantConnectionProvider(DataSource dataSource) {
 		this.datasource = dataSource;
@@ -57,9 +46,12 @@ public class TenantConnectionProvider implements
 		if(tenantIdentifier.equals(FlywayConfig.DEFAULT_SCHEMA)) {
 			connection=getAnyConnection();
 			
-		} else {
-			connection = getTenantDataSourceConnection(tenantIdentifier);
+			connection.setSchema(FlywayConfig.DEFAULT_SCHEMA);
+			connection.setCatalog(FlywayConfig.DEFAULT_SCHEMA);
+			  } else { connection = getAnyConnection();
+			 
 			connection.setSchema(tenantIdentifier);
+			connection.setCatalog(tenantIdentifier);
 		}
 		
 		return connection;

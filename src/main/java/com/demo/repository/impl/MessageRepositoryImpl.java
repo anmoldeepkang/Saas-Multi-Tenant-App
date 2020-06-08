@@ -3,6 +3,7 @@ package com.demo.repository.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +15,10 @@ import com.demo.repository.MessageRepository;
 @Repository("MessageRepository")
 public class MessageRepositoryImpl implements MessageRepository {
 
+	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public MessageRepositoryImpl(EntityManager entityManager) {
-		this.entityManager=entityManager;
-	}
+	
 	
 	@Override
 	public Message saveMessage(Message message) {
@@ -28,7 +28,7 @@ public class MessageRepositoryImpl implements MessageRepository {
 
 	@Override
 	public List<Message> findAll() {
-		return entityManager.createNamedQuery("Message.findAll").getResultList();
+		return entityManager.createQuery("select m from Message m",Message.class).getResultList();
 	}
 
 	@Override
